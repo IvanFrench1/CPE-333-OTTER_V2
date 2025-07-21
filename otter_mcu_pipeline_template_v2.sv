@@ -83,8 +83,7 @@ module OTTER_MCU(input CLK,
      assign pcWrite = 1'b1; 	//Hardwired high, assuming now hazards
      assign memRead1 = 1'b1; 	//Fetch new instruction every cycle
      
-
-
+	
 
 
 
@@ -109,7 +108,9 @@ module OTTER_MCU(input CLK,
                                 && de_inst.opcode != AUIPC
                                 && de_inst.opcode != JAL;
 
-     
+     always_ff @(posedge CLK) begin
+                de_ex_inst <= de_inst;
+     end0
     
 	
 	
@@ -123,7 +124,9 @@ module OTTER_MCU(input CLK,
      // Creates a RISC-V ALU
     OTTER_ALU ALU (de_ex_inst.alu_fun, de_ex_opA, de_ex_opB, aluResult); // the ALU
      
-
+	always_ff @(posedge CLK) begin
+		ex_mem_inst <= de_ex_inst;
+	end
 
 
 
