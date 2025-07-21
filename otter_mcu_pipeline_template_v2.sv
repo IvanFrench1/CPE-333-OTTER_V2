@@ -124,9 +124,7 @@ module OTTER_MCU(input CLK,
      // Creates a RISC-V ALU
     OTTER_ALU ALU (de_ex_inst.alu_fun, de_ex_opA, de_ex_opB, aluResult); // the ALU
      
-	always_ff @(posedge CLK) begin
-		ex_mem_inst <= de_ex_inst;
-	end
+
 
 
 
