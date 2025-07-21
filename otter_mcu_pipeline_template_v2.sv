@@ -83,7 +83,7 @@ module OTTER_MCU(input CLK,
      assign pcWrite = 1'b1; 	//Hardwired high, assuming now hazards
      assign memRead1 = 1'b1; 	//Fetch new instruction every cycle
      
-	
+	//send if_de_pc to reg module
 
 
 
