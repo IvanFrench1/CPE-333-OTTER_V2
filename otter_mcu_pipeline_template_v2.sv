@@ -110,9 +110,9 @@ module OTTER_MCU(input CLK,
 
      always_ff @(posedge CLK) begin
                 de_ex_inst <= de_inst;
-     end0
-    
-	
+     end
+	//Send de_ex_inst into IMMED_GEN/FSM, then it should go out to ALU.
+
 	
 //==== Execute ======================================================
      logic [31:0] ex_mem_rs2;
@@ -124,7 +124,9 @@ module OTTER_MCU(input CLK,
      // Creates a RISC-V ALU
     OTTER_ALU ALU (de_ex_inst.alu_fun, de_ex_opA, de_ex_opB, aluResult); // the ALU
      
-
+	always_ff(@posedge CLK) begin
+		ex_mem_rs2 <= ex_mem_inst
+	end
 
 
 
