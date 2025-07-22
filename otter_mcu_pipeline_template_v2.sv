@@ -114,6 +114,12 @@ module OTTER_MCU(input CLK,
         end
      end
      
+<<<<<<< HEAD
+=======
+     assign pcWrite = 1'b1; 	//Hardwired high, assuming now hazards
+     assign memRead1 = 1'b1; 	//Fetch new instruction every cycle
+     
+>>>>>>> 3e83621aa1c01fbec2d6b266f6dcd6ba1fd3ec4c
 	//send if_de_pc to reg module
 
 
@@ -224,6 +230,14 @@ module OTTER_MCU(input CLK,
     end
 	//Send de_ex_inst into IMMED_GEN/FSM, then it should go out to ALU.
 
+<<<<<<< HEAD
+=======
+     always_ff @(posedge CLK) begin
+                de_ex_inst <= de_inst;
+     end
+	//Send de_ex_inst into IMMED_GEN/FSM, then it should go out to ALU.
+
+>>>>>>> 3e83621aa1c01fbec2d6b266f6dcd6ba1fd3ec4c
 	
 //==== Execute ======================================================
      logic [31:0] ex_mem_rs2;
