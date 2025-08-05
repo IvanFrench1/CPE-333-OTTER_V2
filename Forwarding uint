@@ -1,1 +1,51 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: FrenchCo
+// Engineer: Ivan French
+// 
+// Create Date: 08/05/2025 12:46:41 PM
+// Design Name: 
+// Module Name: Forwarding_Unit
+// Project Name: Forwarding unit
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module Forwarding_Unit(
+    input  logic CLK,
+    input  logic [4:0] ID_EX_rs1,
+    input  logic [4:0] ID_EX_rs2,
+    input  logic [4:0] EX_MEM_rd,
+    input  logic [4:0] MEM_WB_rd,
+    input  logic [31:0] EX_MEM_aluRes,
+    input  logic [31:0] MEM_WB_aluRes,
+    output logic [31:0] Forward_muxA,
+    output logic [31:0] Forward_muxB
+);
+
+always_comb begin
+    Foward_muxA = 32'b0;
+    Foward_muxB = 32'b0;
+
+    if (ID_EX_rs1 == EX_MEM_rd)
+        Foward_muxA = EX_MEM_aluRes;
+    else if (ID_EX_rs1 == MEM_WB_rd)
+        Foward_muxA = MEM_WB_aluRes;
+
+    if (ID_EX_rs2 == EX_MEM_rd)
+        Foward_muxB = EX_MEM_aluRes;
+    else if (ID_EX_rs2 == MEM_WB_rd)
+        Foward_muxB = MEM_WB_aluRes;
+end
+
+endmodule
 
